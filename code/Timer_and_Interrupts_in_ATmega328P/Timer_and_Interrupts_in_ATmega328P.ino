@@ -1,9 +1,11 @@
 // teammates name sujal chintan darshnik
+//project description:- learning timer interrupt
+// first try of port regisor led on 
 void setup() {
-  // put your setup code here, to run once:
+  DDRD = B00000100; // D2 OUTPUT
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  PORTD = B00000100; // D2 HIGH 
 
 }
