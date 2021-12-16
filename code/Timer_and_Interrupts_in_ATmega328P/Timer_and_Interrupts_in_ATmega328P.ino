@@ -1,16 +1,41 @@
 // teammates name sujal chintan darshnik
-//project description:- learning timer interrupt
-// blink 8 led pin 2-9 
+// project description:- learning timer interrupt
+// blink 8 led in sequence pin 2-9 
 void setup() {
   DDRD = B11111100; 
   DDRB = B00000011;
 }
 
 void loop() {
-  PORTD = B11111100;   
-  PORTB = B00000011;
-  delay(500);
-  PORTD = B00000000; 
-  PORTB = B00000000;
-  delay(500);
+  PORTD = B00000100;   
+  delay(100);
+  cl();
+  PORTD = B00001000;   
+  delay(100);
+  cl();
+  PORTD = B00010000;   
+  delay(100);
+  cl();
+  PORTD = B00100000;   
+  delay(100);
+  cl();
+  PORTD = B01000000;   
+  delay(100);
+  cl();
+  PORTD = B10000000;
+  delay(100);
+  cl();
+  PORTB = B00000001;   
+  delay(100);
+  cl();
+  PORTB = B00000010;   
+  delay(100);
+  cl();
+  
+}
+
+void cl()
+{
+PORTD = B00000000;
+PORTB = B00000000;
 }
