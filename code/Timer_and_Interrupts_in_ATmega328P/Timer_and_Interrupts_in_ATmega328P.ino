@@ -1,11 +1,16 @@
 // teammates name sujal chintan darshnik
 //project description:- learning timer interrupt
-// first try of port regisor led on 
+// blink 8 led pin 2-9 
 void setup() {
-  DDRD = B00000100; // D2 OUTPUT
+  DDRD = B11111100; 
+  DDRB = B00000011;
 }
 
 void loop() {
-  PORTD = B00000100; // D2 HIGH 
-
+  PORTD = B11111100;   
+  PORTB = B00000011;
+  delay(500);
+  PORTD = B00000000; 
+  PORTB = B00000000;
+  delay(500);
 }
