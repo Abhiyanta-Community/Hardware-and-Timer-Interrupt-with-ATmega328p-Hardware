@@ -7,9 +7,11 @@ void setup() {
 }
 
 void loop() {
-  PORTD = B00000100;   
+  PORTD |=  B00000100;   // Add OR logical expression for add bit
   delay(100);
-  cl();
+  PORTD &= !B00000100;   // Add AND logical expression for remove bit
+  delay(100);
+
   PORTD = B00001000;   
   delay(100);
   cl();
@@ -31,7 +33,6 @@ void loop() {
   PORTB = B00000010;   
   delay(100);
   cl();
-  
 }
 
 void cl()
