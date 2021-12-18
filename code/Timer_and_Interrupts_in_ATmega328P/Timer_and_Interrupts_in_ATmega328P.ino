@@ -5,11 +5,12 @@ void setup() {
   DDRD = B11111100; // set direction of registor
   DDRB = B00000111; // set direction of registor
   PORTB = B00001000; // pull-up registor
-  Serial.begin(9600);
+  
 }
 
 void loop() 
 { int READ;
+  PORTB = B00001000; // pull-up registor
   READ = (PINB >> 3 & B00001000 >> 3); // read B3 = pin 10
   Serial.println(READ);
   if(READ == 0)
@@ -34,19 +35,16 @@ void loop()
     PORTD = B10000000;
     delay(100);
     cl();
-    PORTB = B00000001;   
+    PORTB = B00001001;   
     delay(100);
     cl();
-    PORTB = B00000010;   
+    PORTB = B00001010;   
     delay(100);
     cl();
-    PORTB = B00000100;   
+    PORTB = B00001100;   
     delay(100);
-    cl();
-    Serial.println(PINB);
+    cl();  
   } 
-  PORTB = B00001000; // pull-up registor
-  Serial.println(PINB);
 }
 //////////////////////////////////
 //function name: cl()
