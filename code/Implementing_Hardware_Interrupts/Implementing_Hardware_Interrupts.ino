@@ -16,12 +16,15 @@ void setup() {
   PORTD |= (1<<button);  //pull-up pin-2.
      
   //Low level of INT0 generates interrupt
-  EICRA &= ~(1<<ISC01);  //when ISC01 and ISC00 are 0 then = LOW level
-  EICRA &= ~(1<<ISC00);
+  //EICRA &= ~(1<<ISC00);  //when ISC01 and ISC00 are 0 then = LOW level
+  //EICRA &= ~(1<<ISC01); //ISC00
+  
+  EICRA = 0x01;  
+  EICRA = 0x02;
 
   //enable interrupt for INT0
-  EIMSK |=(1<<INT0);  
-
+  //EIMSK |=(1<<INT0);  
+    EIMSK = 0x01;
   //enable globle interrupt
   sei();
 }
