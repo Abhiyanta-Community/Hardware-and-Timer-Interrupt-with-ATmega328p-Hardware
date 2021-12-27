@@ -19,7 +19,7 @@ void setup() {
   //EICRA &= ~(1<<ISC00);  //when ISC01 and ISC00 are 0 then = LOW level
   //EICRA &= ~(1<<ISC01); //ISC00
   
-  EICRA = 0x01;  
+  
   EICRA = 0x02;
 
   //enable interrupt for INT0
