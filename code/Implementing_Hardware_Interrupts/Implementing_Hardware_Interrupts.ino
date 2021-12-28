@@ -7,7 +7,7 @@ const uint8_t button=2; // Here i use contant unsign interger for 8 bit microcon
 //Globle variable
 int i=0;
 int j=0;
-
+int a=1;
 void setup() {
   DDRD = B11111000; // set direction of registor pin-3 to pin 7 OUTPUT and pin-2 as INPUT 
   DDRB = B00001111; // set direction of registor pin-8 to pin 11 OUTPUT
@@ -33,9 +33,9 @@ void loop()
 { 
 }
 
-ISR(INT0_vect) //Interrupt Service Routine 
-{  
-   for(i=0;i<=8;i++)
+void ledblink()
+{
+  for(i=0;i<=8;i++)
    { 
       if(i <= 4) // when the loop rotating first PORTD pins control by this IF statment
       {          
@@ -49,5 +49,16 @@ ISR(INT0_vect) //Interrupt Service Routine
       delay(10000);
       PORTB &= ~B00001111;  // clear the bits
       }
-    }  
+    }
+}
+ISR(INT0_vect) //Interrupt Service Routine 
+{  if(a==0)
+    {
+     ledblink();  
+     a=1;
+    }
+    else
+    {
+    a=0;
+    }
 }
