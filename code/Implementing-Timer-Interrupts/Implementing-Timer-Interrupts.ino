@@ -25,7 +25,7 @@ void setup() {
    sei(); //Enable globle interrupt
 }
 void loop() {
-  delay(500);
+  
  }
 
 ISR(TIMER1_COMPA_vect)
