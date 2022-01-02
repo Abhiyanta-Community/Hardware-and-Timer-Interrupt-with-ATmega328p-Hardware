@@ -1,4 +1,4 @@
-//Made by Sujal Vasoya
+
 //description:- made 9 led rotating when we press push button and also when we press button secound time start 
 //              rotating from first led
 
