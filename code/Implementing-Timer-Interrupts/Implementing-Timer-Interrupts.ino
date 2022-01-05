@@ -26,11 +26,15 @@ void setup() {
    //set prescaler of 256
    TCCR1B = B00000100;  //(TCCR1B = Timer/Counter1 Control Register B)
     
-   //Reset Timer and set compare value 
+   //Reset Timer  
    TCNT1 = 0;           //(TCNT = Timer/Counter1)
+
+   //Set compare value
+   //(OCR1A = Output Compare Register A)
    OCR1A = 6250;        //time 100ms=6250    t=100ms, f=10Hz  (16Mhz/(256*10)) = 6250
    
    //Enabel timer1 comper interrupt 
+   //(TIMSK1 = Timer/Counter1 Interrupt Mask Register)
    //TIMSK1 |= B00000010;  //Enabel timer1 comper interrupt 
      TIMSK1 = B00000000;   //Disable timer1 comper interrupt 
 ////////////////////////////////////////////////////////////////////////////////
