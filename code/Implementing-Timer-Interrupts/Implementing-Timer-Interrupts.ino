@@ -1,34 +1,39 @@
 int i=0;
 int j=0;
-int a=0;
+
 void setup() {
-   DDRB = B00001111;
-   DDRD = B11111000;
+   DDRB = B00001111;    // led pin configauration pin 3-11, button pin-2 
+   DDRD = B11111000;    //(DDRD /DDRB = Data Direction register PortD/PortB ) 
+
    
-////////////////////////////External Interrupt////////////////////////////////////////////
+//////////////////////////-->External Interrupt<--//////////////////////////////
    // set pin-2 to pull-up input
-   PORTD |= (1<<2);  //pull-up pin-2.
+   PORTD |= (1<<2);     //pull-up pin-2. (PORTD = The Port B Data Register)
      
    //Low level of INT0 generates interrupt
-   //EICRA = 0x01;   //when ISC01 and ISC00 are 0 then = LOW level
-   EICRA = 0x02;
+   //when ISC01 and ISC00 are 0 then = LOW level
+   EICRA = 0x02;        //(EICRA = Exterbal Interrupt Control Register A)
 
    //enable interrupt for INT0  
-   EIMSK = 0x01;
+   EIMSK = 0x01;        //(EIMSK = External Interrupt Mask Register)
+///////////////////////////////////////////////////////////////////////////////
+
    
-/////////////////////////////Timer Interrupt////////////////////////////////////////////   
+//////////////////////////-->Timer Interrupt<--////////////////////////////////  
    //reset Timer counter Reg A 
-   TCCR1A = 0x00;
+   TCCR1A = 0x00;       //(TCCR1A = Timer/Counter1 Control Register A)
 
    //set prescaler of 256
-   TCCR1B = B00000100;
+   TCCR1B = B00000100;  //(TCCR1B = Timer/Counter1 Control Register B)
     
    //Reset Timer and set compare value 
-   TCNT1 = 0;
-   OCR1A = 6250;      // time 100ms=6250    t=100ms, f=10Hz  (16Mhz/(256*10)) = 6250
+   TCNT1 = 0;           //(TCNT = Timer/Counter1)
+   OCR1A = 6250;        //time 100ms=6250    t=100ms, f=10Hz  (16Mhz/(256*10)) = 6250
    
    //Enabel timer1 comper interrupt 
-   TIMSK1 |= B00000010;
+   //TIMSK1 |= B00000010;  //Enabel timer1 comper interrupt 
+     TIMSK1 = B00000000;   //Disable timer1 comper interrupt 
+////////////////////////////////////////////////////////////////////////////////
 
    sei(); //Enable globle interrupt
 }
@@ -41,21 +46,19 @@ void loop()
 
 ISR(INT0_vect) //Interrupt Service Routine 
 {  
-    a=1;   
+    TIMSK1 = B00000010; //Enabel timer1 comper interrupt 
+    OCR1A = 6250;       //Set comper match interrupt value
 }
 
 
 ISR(TIMER1_COMPA_vect)
 {  
-   TCNT1 = 0;
-   if(a==1)
-   {
+   TCNT1 = 0;          //Reser Timer1 
    abc(); // calling abc function   
-   }
 }
 
-void led()
-{     cl();
+void led()    // led function for led sequnce 
+{     cl();   // clear the led
       i++;
       if(i <=6 ) // when the loop rotating first PORTD pins control by this IF statment
       {          
@@ -69,7 +72,7 @@ void led()
     if(i==11) // for when sequnce was complited then stated from first led
     {
       i=0;
-      a=0;
+      TIMSK1 = B00000000;   //Disable timer1 comper interrupt 
     }
 }
 
