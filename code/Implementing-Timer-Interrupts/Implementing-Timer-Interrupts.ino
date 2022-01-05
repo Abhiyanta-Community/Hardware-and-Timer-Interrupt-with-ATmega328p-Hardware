@@ -1,38 +1,57 @@
 int i=0;
 int j=0;
+int a=0;
 void setup() {
-   DDRB = B00000111;
-   DDRD = B11111100;
+   DDRB = B00001111;
+   DDRD = B11111000;
    
+////////////////////////////External Interrupt////////////////////////////////////////////
+   // set pin-2 to pull-up input
+   PORTD |= (1<<2);  //pull-up pin-2.
+     
+   //Low level of INT0 generates interrupt
+   //EICRA = 0x01;   //when ISC01 and ISC00 are 0 then = LOW level
+   EICRA = 0x02;
+
+   //enable interrupt for INT0  
+   EIMSK = 0x01;
+   
+/////////////////////////////Timer Interrupt////////////////////////////////////////////   
    //reset Timer counter Reg A 
-   TCCR1A = 0;
+   TCCR1A = 0x00;
 
    //set prescaler of 256
-//   TCCR1B |= (1<<CS12);
-//   TCCR1B &= ~(1<<CS11);
-//   TCCR1B &= ~(1<<CS10);
-
-    TCCR1B = B00000100;
+   TCCR1B = B00000100;
     
    //Reset Timer and set compare value 
    TCNT1 = 0;
    OCR1A = 6250;      // time 100ms=6250    t=100ms, f=10Hz  (16Mhz/(256*10)) = 6250
    
-   
    //Enabel timer1 comper interrupt 
-//   TIMSK1 |= (1<<OCIE1A); 
    TIMSK1 |= B00000010;
+
    sei(); //Enable globle interrupt
 }
-void loop() {
-  
- }
+
+
+void loop() 
+{  
+
+}
+
+ISR(INT0_vect) //Interrupt Service Routine 
+{  
+    a=1;   
+}
+
 
 ISR(TIMER1_COMPA_vect)
 {  
    TCNT1 = 0;
-   abc(); // calling abc function
-
+   if(a==1)
+   {
+   abc(); // calling abc function   
+   }
 }
 
 void led()
@@ -42,14 +61,15 @@ void led()
       {          
       PORTD |= (1 << i+1);  //i+2 because bit start from 2
       }
-      if(i>=7 && i<=10) // when the loop rotating first PORTB pins control by this IF statment
+      if(i>=7 && i<=11) // when the loop rotating first PORTB pins control by this IF statment
       {
       PORTB |= (1 << i-7);  // i-7 because bit start from 0
       }
     
-    if(i==10) // for when sequnce was complited then stated from first led
+    if(i==11) // for when sequnce was complited then stated from first led
     {
       i=0;
+      a=0;
     }
 }
 
