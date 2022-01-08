@@ -12,7 +12,7 @@ void setup() {
      
    //Low level of INT0 generates interrupt
    //when ISC01 and ISC00 are 0 then = LOW level
-   EICRA = 0x02;        //(EICRA = Exterbal Interrupt Control Register A)
+   EICRA = 0x02;        //(EICRA = External Interrupt Control Register A)
 
    //enable interrupt for INT0  
    EIMSK = 0x01;        //(EIMSK = External Interrupt Mask Register)
