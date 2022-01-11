@@ -15,6 +15,12 @@ In this task we face some problems like flickering, floating pin, some compilati
 # Report Documentation
 For Documentation refer the issues section as well as code.
 
+# Photo
+![5 task](https://user-images.githubusercontent.com/83647206/148884087-59a6c385-bd9e-4c67-8da0-6979b53f74b9.jpg)
+
+# Video
+
+
 
 # File Introduction
 Refer to the folderTree file in current directory for comment about important files and directory tree of whole project.
