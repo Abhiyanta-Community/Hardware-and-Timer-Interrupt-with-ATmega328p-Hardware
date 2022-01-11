@@ -2,7 +2,7 @@
 
 * Owner: Abhiyanta Community
 
-* Team Members: <Sujal Vasoya, Chintan Beladiya, Darshnik Makavana>
+* Team Members: Sujal Vasoya, Chintan Beladiya, Darshnik Makavana
 
 * We are Always Available for Innovators :) Contact us : abhiyanta.ind@gmail.com 
 
