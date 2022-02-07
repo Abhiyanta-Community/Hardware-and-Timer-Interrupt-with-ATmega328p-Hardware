@@ -12,7 +12,7 @@
 In this task we learn about basics of microcontroller and what is the basic structure of macrocontroller. Also we learn how internal perifaral connected with each other like ALU,Generel peorpose working register, i/o pins, SRAM, EEPROM etc. In farther we learn how to control I/O PORT with register and how to use it. In task we learn about Hardware interrupt in this we learn External Interrupt how to configure that with register and how to use it. In this task we learn timer interrupt. In this we learn about Timer/Counter how to use that an how many register we need to configure for the timer interrupt. In timer interrupt we learn Output Compare match Interrupt.   
 
 # Task Document
-In order to understand the task, Refer the project section and milestones, It describes the task flow. All the issues connected with milestones (Labeled "Task") discribes the Sub-Tasks and conclusion of the team and remarks of the Tech Leads. 
+In order to understand the task, Refer the project section and milestones, It describes the task flow. All the issues connected with milestones (Labeled "Task") discribes the Sub-Tasks and conclusion of the team and remarks of the Tech Leads. Connection of the circuit has been discribed in code. 
 
 # Report Documentation
 For Documentation refer the issues section as well as code.
